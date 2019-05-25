@@ -8,13 +8,19 @@ JAVA_HOME ?= $(realpath $(dir $(realpath $(shell which java)))../)
 
 ifeq ($(TARGET), darwin)
 	DYLIB     := dylib
-	LDFLAGS	  := -dynamiclib -Wl,-undefined -Wl,dynamic_lookup -Wl,-single_module
-	CFLAGS    += -I $(JAVA_HOME)/Headers/
+	LDFLAGS   := -dynamiclib -Wl,-undefined -Wl,dynamic_lookup -Wl,-single_module
+	CFLAGS    += -I $(JAVA_HOME)/include -I $(JAVA_HOME)/include/$(TARGET)
 else
 	DYLIB     := so
 	LDFLAGS   := -shared
 ifneq ($(TARGET), android)
 	CFLAGS    += -fPIC -I $(JAVA_HOME)/include -I $(JAVA_HOME)/include/$(TARGET)
+ifneq (,$(TOOLCHAIN))
+	CC        := $(TOOLCHAIN)/bin/arm-linux-gnueabihf-gcc
+	SYSROOT   := $(TOOLCHAIN)/arm-linux-gnueabihf
+	CFLAGS    += -march=armv7-a -mfloat-abi=hard -mfpu=neon-vfpv4 --sysroot=$(SYSROOT)
+	SSE2      :=
+endif
 endif
 endif
 

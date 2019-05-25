@@ -16,6 +16,7 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
  */
 public class Platform {
     public enum Arch {
+        arm   ("arm"),
         x86   ("x86|i386"),
         x86_64("x86_64|amd64");
 
