@@ -5,7 +5,7 @@
 
   <groupId>com.lambdaworks</groupId>
   <artifactId>scrypt</artifactId>
-  <version>1.4.0</version>
+  <version>1.4.1</version>
 
   <packaging>jar</packaging>
 
@@ -44,8 +44,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.3.2</version>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
 
@@ -60,27 +60,12 @@
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jarsigner-plugin</artifactId>
-        <version>1.2</version>
-        <executions>
-          <execution>
-            <id>sign</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.10</version>
 
         <configuration>
           <useFile>false</useFile>
-          <argLine>-Xmx2G -Xms512M</argLine>
+          <argLine>-Xmx3G -Xms512M</argLine>
         </configuration>
 
         <executions>
@@ -97,21 +82,6 @@
             </configuration>
             <goals>
               <goal>test</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <version>1.1</version>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
             </goals>
           </execution>
         </executions>

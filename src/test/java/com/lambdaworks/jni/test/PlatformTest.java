@@ -14,6 +14,8 @@ public class PlatformTest extends AbstractPlatformDetectionTest {
         assertEquals(Platform.Arch.x86_64, detectArch("x86_64").arch);
         assertEquals(Platform.Arch.x86_64, detectArch("amd64").arch);
         assertEquals(Platform.Arch.x86,    detectArch("i386").arch);
+        assertEquals(Platform.Arch.armhf,  detectArch("arm").arch);
+        assertEquals(Platform.Arch.arm64,  detectArch("aarch64").arch);
     }
 
     @Test
